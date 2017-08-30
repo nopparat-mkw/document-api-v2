@@ -18,8 +18,8 @@ describe('Apis reducer', () => {
   let api2;
 
   beforeEach(() => {
-    api1 = new Api({completed: false, key: '0', title: 'api 1'});
-    api2 = new Api({completed: false, key: '1', title: 'api 2'});
+    api1 = new Api({key: '0', title: 'api 1'});
+    api2 = new Api({key: '1', title: 'api 2'});
   });
 
 
@@ -51,22 +51,6 @@ describe('Apis reducer', () => {
       expect(nextState.list.size).toBe(1);
       expect(nextState.list.get(0)).toBe(api1);
       expect(nextState.previous).toBe(state.list);
-    });
-  });
-
-
-  describe('FILTER_APIS', () => {
-    it('should set filter with provided value', () => {
-      let state = new ApisState();
-
-      let nextState = apisReducer(state, {
-        type: FILTER_APIS,
-        payload: {
-          filterType: 'completed'
-        }
-      });
-
-      expect(nextState.filter).toBe('completed');
     });
   });
 

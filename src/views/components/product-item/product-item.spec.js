@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-import { Product } from 'src/controllers/products';
+import { Product } from 'src/controllers/product';
 import { createTestComponent } from 'src/utils/create-test-component';
 import ProductItem from './product-item';
 
@@ -12,7 +12,7 @@ describe('ProductItem', () => {
 
 
   beforeEach(() => {
-    product = new Product({completed: true, title: 'test'});
+    product = new Product({title: 'test'});
 
     props = {
       product,
@@ -90,21 +90,6 @@ describe('ProductItem', () => {
       });
     });
 
-    describe('#toggleStatus() method', () => {
-      it('should call #productActions.updateProduct', () => {
-        productItem.toggleStatus({
-          target: {checked: true}
-        });
-
-        expect(productItem.props.updateProduct.callCount).toEqual(1);
-      });
-
-      it('should toggle product.complete', () => {
-        productItem.toggleStatus();
-        expect(productItem.props.updateProduct.args[0][1].completed).toEqual(!product.completed);
-      });
-    });
-
     describe('#handleKeyUp() method', () => {
       describe('with enter key', () => {
         it('should call #save() with event object', () => {
@@ -162,32 +147,25 @@ describe('ProductItem', () => {
       expect(input.prop('onKeyUp')).toBe(component.handleKeyUp);
     });
 
-    it('should set `onClick` of status button to be #toggleStatus()', () => {
-      const wrapper = mount(<ProductItem {...props} />);
-      const component = wrapper.instance();
-      const buttons = wrapper.find('Button');
-      expect(buttons.at(0).prop('onClick')).toBe(component.toggleStatus);
-    });
-
     it('should set `onClick` of edit button to be #edit()', () => {
       const wrapper = mount(<ProductItem {...props} />);
       const component = wrapper.instance();
       const buttons = wrapper.find('Button');
-      expect(buttons.at(1).prop('onClick')).toBe(component.edit);
+      expect(buttons.at(0).prop('onClick')).toBe(component.edit);
     });
 
     it('should set `onClick` of clear button to be #stopEditing()', () => {
       const wrapper = mount(<ProductItem {...props} />);
       const component = wrapper.instance();
       const buttons = wrapper.find('Button');
-      expect(buttons.at(2).prop('onClick')).toBe(component.stopEditing);
+      expect(buttons.at(1).prop('onClick')).toBe(component.stopEditing);
     });
 
     it('should set `onClick` of delete button to be #remove()', () => {
       const wrapper = mount(<ProductItem {...props} />);
       const component = wrapper.instance();
       const buttons = wrapper.find('Button');
-      expect(buttons.at(3).prop('onClick')).toBe(component.remove);
+      expect(buttons.at(2).prop('onClick')).toBe(component.remove);
     });
   });
 });

@@ -9,6 +9,9 @@ import { getApiFilter, getVisibleApis, apisActions } from 'src/controllers/apis'
 import Notification from '../../components/notification';
 import ApiList from '../../components/api-list';
 
+import classNames from 'classnames';
+import Button from '../../components/button';
+import Icon from '../../components/icon';
 
 export class ApiListPage extends Component {
     static propTypes = {
@@ -26,8 +29,13 @@ export class ApiListPage extends Component {
         updateApi: PropTypes.func.isRequired
     };
 
+    constructor(){
+        super(...arguments);
+        this.toggleAdd = this.toggleAdd.bind(this)
+    }
+
     componentWillMount() {
-        this.props.loadApis();
+        this.props.loadApis(this.props.match.params.id);
         this.props.filterApis(
             this.getFilterParam(this.props.location.search)
         );
@@ -63,9 +71,29 @@ export class ApiListPage extends Component {
         );
     }
 
+    toggleAdd(){
+        const value = {
+            title: "test new api",
+            url: "www.google.com",
+            method: "GET",
+            url_params: "",
+            data_params: "",
+            success_response: "",
+            error_response: "",
+            sample_call: "",
+            notes: ""
+        };
+        this.props.createApi(value)
+    }
+
     render() {
         return (
             <div className="g-row">
+                <Button
+                    className={classNames('btn--icon', 'api-item__button')}
+                    onClick={this.toggleAdd}>
+                    <Icon name="add" />
+                </Button>
 
                 <div className="g-col">
                     <ApiList

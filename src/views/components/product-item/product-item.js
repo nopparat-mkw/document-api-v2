@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router'
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Button from '../button';
@@ -19,7 +18,6 @@ export class ProductItem extends Component {
         this.remove = this.remove.bind(this);
         this.save = this.save.bind(this);
         this.stopEditing = this.stopEditing.bind(this);
-        this.toggleStatus = this.toggleStatus.bind(this);
         this.redirectPage = this.redirectPage.bind(this);
     }
 
@@ -55,11 +53,6 @@ export class ProductItem extends Component {
 
     stopEditing() {
         this.setState({ editing: false });
-    }
-
-    toggleStatus() {
-        const { product } = this.props;
-        this.props.updateProduct(product, { completed: !product.completed });
     }
 
     redirectPage() {
@@ -138,5 +131,4 @@ ProductItem.contextTypes = {
     }),
 }
 
-
-export default withRouter(ProductItem);
+export default ProductItem;

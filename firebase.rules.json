@@ -9,6 +9,10 @@
     "products-api": {
       ".read": "auth !== null",
       ".write": "auth !== null"
+    },
+    "apis": {
+      ".read": "auth !== null",
+      ".write": "auth !== null"
     }
   }
 }

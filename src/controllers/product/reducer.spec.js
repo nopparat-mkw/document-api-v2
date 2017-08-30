@@ -18,8 +18,8 @@ describe('Products reducer', () => {
   let product2;
 
   beforeEach(() => {
-    product1 = new Product({completed: false, key: '0', title: 'product 1'});
-    product2 = new Product({completed: false, key: '1', title: 'product 2'});
+    product1 = new Product({key: '0', title: 'product 1'});
+    product2 = new Product({key: '1', title: 'product 2'});
   });
 
 
@@ -51,22 +51,6 @@ describe('Products reducer', () => {
       expect(nextState.list.size).toBe(1);
       expect(nextState.list.get(0)).toBe(product1);
       expect(nextState.previous).toBe(state.list);
-    });
-  });
-
-
-  describe('FILTER_PRODUCTS', () => {
-    it('should set filter with provided value', () => {
-      let state = new ProductsState();
-
-      let nextState = productsReducer(state, {
-        type: FILTER_PRODUCTS,
-        payload: {
-          filterType: 'completed'
-        }
-      });
-
-      expect(nextState.filter).toBe('completed');
     });
   });
 

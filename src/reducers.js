@@ -4,7 +4,7 @@ import { authReducer } from './auth';
 import { notificationReducer } from './notification';
 import { tasksReducer } from './controllers/tasks';
 import { productsReducer } from './controllers/product';
-// import { apisReducer } from './controllers/apis';
+import { apisReducer } from './controllers/apis';
 
 
 export default combineReducers({
@@ -13,5 +13,5 @@ export default combineReducers({
   routing: routerReducer,
   tasks: tasksReducer,
   products: productsReducer,
-  // apis: apisReducer
+  apis: apisReducer
 });

@@ -1,4 +1,4 @@
-import { getDeletedProduct, getProducts } from './selectors';
+import { getDeletedProduct } from './selectors';
 import { productList } from './product-list';
 import {
     CREATE_PRODUCT_ERROR,
@@ -110,7 +110,6 @@ export function filterProducts( filterType ) {
 
 export function loadProducts() {
     return ( dispatch, getState ) => {
-        console.log(getProducts(getState()))
         productList.path = `products-api`;
         productList.subscribe(dispatch);
     };
