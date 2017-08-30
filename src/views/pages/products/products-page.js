@@ -5,56 +5,40 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
 import { getNotification, notificationActions } from 'src/notification';
-import { getApiFilter, getVisibleApis, apisActions } from 'src/controllers/apis';
+import { getProductFilter, getVisibleProducts, productsActions } from 'src/controllers/product';
 import Notification from '../../components/notification';
-import ApiList from '../../components/api-list';
+import ProductList from '../../components/product-list';
+import ProductForm from "../../components/product-form/product-form";
 
 
-export class ApiListPage extends Component {
+export class ProductPage extends Component {
     static propTypes = {
-        createApi: PropTypes.func.isRequired,
+        createProduct: PropTypes.func.isRequired,
         dismissNotification: PropTypes.func.isRequired,
-        filterApis: PropTypes.func.isRequired,
         filterType: PropTypes.string.isRequired,
-        loadApis: PropTypes.func.isRequired,
+        loadProducts: PropTypes.func.isRequired,
         location: PropTypes.object.isRequired,
         notification: PropTypes.object.isRequired,
-        removeApi: PropTypes.func.isRequired,
-        apis: PropTypes.instanceOf(List).isRequired,
-        undeleteApi: PropTypes.func.isRequired,
-        unloadApis: PropTypes.func.isRequired,
-        updateApi: PropTypes.func.isRequired
+        removeProduct: PropTypes.func.isRequired,
+        products: PropTypes.instanceOf(List).isRequired,
+        undeleteProduct: PropTypes.func.isRequired,
+        unloadProducts: PropTypes.func.isRequired,
+        updateProduct: PropTypes.func.isRequired
     };
 
     componentWillMount() {
-        this.props.loadApis();
-        this.props.filterApis(
-            this.getFilterParam(this.props.location.search)
-        );
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.location.search !== this.props.location.search) {
-            this.props.filterApis(
-                this.getFilterParam(nextProps.location.search)
-            );
-        }
+        this.props.loadProducts();
     }
 
     componentWillUnmount() {
-        this.props.unloadApis();
-    }
-
-    getFilterParam(search) {
-        const params = new URLSearchParams(search);
-        return params.get('filter');
+        this.props.unloadProducts();
     }
 
     renderNotification() {
         const { notification } = this.props;
         return (
             <Notification
-                action={this.props.undeleteApi}
+                action={this.props.undeleteProduct}
                 actionLabel={notification.actionLabel}
                 dismiss={this.props.dismissNotification}
                 display={notification.display}
@@ -66,12 +50,14 @@ export class ApiListPage extends Component {
     render() {
         return (
             <div className="g-row">
-
                 <div className="g-col">
-                    <ApiList
-                        removeApi={this.props.removeApi}
-                        apis={this.props.apis}
-                        updateApi={this.props.updateApi}
+                    <ProductForm handleSubmit={this.props.createProduct} />
+                </div>
+                <div className="g-col">
+                    <ProductList
+                        removeProduct={this.props.removeProduct}
+                        products={this.props.products}
+                        updateProduct={this.props.updateProduct}
                     />
                 </div>
 
@@ -88,22 +74,22 @@ export class ApiListPage extends Component {
 
 const mapStateToProps = createSelector(
     getNotification,
-    getApiFilter,
-    getVisibleApis,
-    (notification, filterType, apis) => ({
+    getProductFilter,
+    getVisibleProducts,
+    (notification, filterType, products) => ({
         notification,
         filterType,
-        apis
+        products
     })
 );
 
 const mapDispatchToProps = Object.assign(
     {},
-    apisActions,
+    productsActions,
     notificationActions
 );
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ApiListPage);
+)(ProductPage);

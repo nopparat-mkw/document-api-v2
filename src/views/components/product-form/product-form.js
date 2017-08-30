@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './product-form.css';
 
 
-export class TaskForm extends Component {
+export class ProductForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired
   };
@@ -40,15 +40,15 @@ export class TaskForm extends Component {
 
   render() {
     return (
-      <form className="task-form" onSubmit={this.handleSubmit} noValidate>
+      <form className="product-form" onSubmit={this.handleSubmit} noValidate>
         <input
           autoComplete="off"
           autoFocus
-          className="task-form__input"
+          className="product-form__input"
           maxLength="64"
           onChange={this.handleChange}
           onKeyUp={this.handleKeyUp}
-          placeholder="What needs to be done?"
+          placeholder="New Product Name"
           ref={e => this.titleInput = e}
           type="text"
           value={this.state.title}
@@ -59,4 +59,4 @@ export class TaskForm extends Component {
 }
 
 
-export default TaskForm;
+export default ProductForm;

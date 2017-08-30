@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import './button.css';
 
 
-const Button = ({children, className, onClick, type = 'button'}) => {
+const Button = ({children, className, onClick, type = 'button'}, style) => {
   const cssClasses = classNames('btn', className);
   return (
-    <button className={cssClasses} onClick={onClick} type={type}>
+    <button className={cssClasses} onClick={onClick} type={type} style={style}>
       {children}
     </button>
   );

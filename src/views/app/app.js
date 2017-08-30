@@ -9,7 +9,7 @@ import RequireAuthRoute from '../components/require-auth-route';
 import RequireUnauthRoute from '../components/require-unauth-route';
 import SignInPage from '../pages/sign-in';
 import TasksPage from '../pages/tasks';
-import ApiListPage from '../pages/apis/api-list-page';
+import ProductPage from "../pages/products/products-page";
 
 const App = ({authenticated, signOut}) => (
     <div>
@@ -19,8 +19,8 @@ const App = ({authenticated, signOut}) => (
         />
 
         <main>
-            <RequireAuthRoute authenticated={authenticated} exact path="/" component={ApiListPage}/>
-            <RequireAuthRoute authenticated={authenticated} exact path="/task" component={TasksPage}/>
+            <RequireAuthRoute authenticated={authenticated} exact path="/" component={ProductPage}/>
+            <RequireAuthRoute authenticated={authenticated} exact path="/tasks" component={TasksPage}/>
             <RequireUnauthRoute authenticated={authenticated} path="/sign-in" component={SignInPage}/>
         </main>
     </div>

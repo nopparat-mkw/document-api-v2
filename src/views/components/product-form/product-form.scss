@@ -1,7 +1,7 @@
 @import 'views/styles/shared';
 
 
-.task-form {
+.product-form {
   margin: 40px 0 10px;
 
   @include media-query(540) {
@@ -9,7 +9,7 @@
   }
 }
 
-.task-form__input {
+.product-form__input {
   outline: none;
   border: 0;
   border-bottom: 1px dotted #666;

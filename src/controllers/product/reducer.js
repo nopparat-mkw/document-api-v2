@@ -1,15 +1,15 @@
 import { List, Record } from 'immutable';
 import { SIGN_OUT_SUCCESS } from 'src/auth/action-types';
 import {
-  CREATE_API_SUCCESS,
-  REMOVE_API_SUCCESS,
-  FILTER_APIS,
-  LOAD_APIS_SUCCESS,
-  UPDATE_API_SUCCESS
+  CREATE_PRODUCT_SUCCESS,
+  REMOVE_PRODUCT_SUCCESS,
+  FILTER_PRODUCTS,
+  LOAD_PRODUCTS_SUCCESS,
+  UPDATE_PRODUCT_SUCCESS
 } from './action-types';
 
 
-export const ApisState = new Record({
+export const ProductsState = new Record({
   deleted: null,
   filter: '',
   list: new List(),
@@ -17,9 +17,9 @@ export const ApisState = new Record({
 });
 
 
-export function apisReducer(state = new ApisState(), {payload, type}) {
+export function productsReducer(state = new ProductsState(), {payload, type}) {
   switch (type) {
-    case CREATE_API_SUCCESS:
+    case CREATE_PRODUCT_SUCCESS:
       return state.merge({
         deleted: null,
         previous: null,
@@ -28,30 +28,30 @@ export function apisReducer(state = new ApisState(), {payload, type}) {
               state.list.unshift(payload)
       });
 
-    case REMOVE_API_SUCCESS:
+    case REMOVE_PRODUCT_SUCCESS:
       return state.merge({
         deleted: payload,
         previous: state.list,
-        list: state.list.filter(api => api.key !== payload.key)
+        list: state.list.filter(product => product.key !== payload.key)
       });
 
-    case FILTER_APIS:
+    case FILTER_PRODUCTS:
       return state.set('filter', '');
 
-    case LOAD_APIS_SUCCESS:
+    case LOAD_PRODUCTS_SUCCESS:
       return state.set('list', new List(payload.reverse()));
 
-    case UPDATE_API_SUCCESS:
+    case UPDATE_PRODUCT_SUCCESS:
       return state.merge({
         deleted: null,
         previous: null,
-        list: state.list.map(api => {
-          return api.key === payload.key ? payload : api;
+        list: state.list.map(product => {
+          return product.key === payload.key ? payload : product;
         })
       });
 
     case SIGN_OUT_SUCCESS:
-      return new ApisState();
+      return new ProductsState();
 
     default:
       return state;

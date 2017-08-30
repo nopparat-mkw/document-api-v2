@@ -1,4 +1,4 @@
-import { getDeletedTask } from './selectors';
+import { getDeletedApi } from './selectors';
 import { apiList } from './api-list';
 import {
   CREATE_API_ERROR,
