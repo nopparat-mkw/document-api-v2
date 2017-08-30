@@ -1,16 +1,49 @@
 {
   "name": "document-api-v2",
   "version": "0.1.0",
+  "homepage": "https://document-api-v2.firebaseapp.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nopparat-mkw/document-api-v2.git"
+  },
+  "author": {
+    "name": "Mr.Nopparat Mueangkaew",
+    "email": "nopparat.mueangkaew@gmail.com"
+  },
+  "license": "MIT",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
+    "firebase": "^4.3.0",
+    "history": "^4.7.2",
+    "immutable": "^3.8.1",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.12"
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.6",
+    "react-scripts": "1.0.12",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build": "run-s build:css build:js",
+    "build:css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "build:js": "cross-env NODE_PATH=. react-scripts build",
+    "start": "run-p start:css start:js",
+    "start:css": "npm run build:css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start:js": "cross-env NODE_PATH=. react-scripts start",
+    "test": "cross-env NODE_PATH=. react-scripts test --env=jsdom"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.5",
+    "firebase-tools": "^3.9.2",
+    "minx": "r-park/minx.git",
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.1.1"
   }
 }
