@@ -1,4 +1,4 @@
-import { REMOVE_TASK_SUCCESS } from 'src/tasks/action-types';
+import { REMOVE_TASK_SUCCESS } from 'src/controllers/tasks/action-types';
 import { DISMISS_NOTIFICATION } from './action-types';
 import { notificationReducer } from './reducer';
 
