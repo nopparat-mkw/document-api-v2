@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { getNotification, notificationActions } from 'src/notification';
+import { getNotification, notificationActions } from 'src/controllers/notification';
 import { getProductFilter, getVisibleProducts, productsActions } from 'src/controllers/product';
 import Notification from '../../components/notification';
 import ProductList from '../../components/product-list';

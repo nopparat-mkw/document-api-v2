@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { getNotification, notificationActions } from 'src/notification';
+import { getNotification, notificationActions } from 'src/controllers/notification';
 import { getApiFilter, getVisibleApis, apisActions } from 'src/controllers/apis';
 import Notification from '../../components/notification';
 import ApiList from '../../components/api-list';

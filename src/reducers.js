@@ -1,7 +1,7 @@
 import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
 import { authReducer } from './auth';
-import { notificationReducer } from './notification';
+import { notificationReducer } from './controllers/notification';
 import { tasksReducer } from './controllers/tasks';
 import { productsReducer } from './controllers/product';
 import { apisReducer } from './controllers/apis';

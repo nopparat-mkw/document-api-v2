@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { getNotification, notificationActions } from 'src/notification';
+import { getNotification, notificationActions } from 'src/controllers/notification';
 import { getTaskFilter, getVisibleTasks, tasksActions } from 'src/controllers/tasks';
 import Notification from '../../components/notification';
 import TaskFilters from '../../components/task-filters';
