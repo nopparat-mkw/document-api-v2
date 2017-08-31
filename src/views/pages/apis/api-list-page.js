@@ -12,6 +12,7 @@ import ApiList from '../../components/api-list';
 import classNames from 'classnames';
 import Button from '../../components/button';
 import Icon from '../../components/icon';
+import NavigationHeader from "../../components/navigation-header/navigation-header";
 
 export class ApiListPage extends Component {
     static propTypes = {
@@ -96,6 +97,7 @@ export class ApiListPage extends Component {
                 </Button>
 
                 <div className="g-col">
+                    <NavigationHeader title="ok"/>
                     <ApiList
                         removeApi={this.props.removeApi}
                         apis={this.props.apis}

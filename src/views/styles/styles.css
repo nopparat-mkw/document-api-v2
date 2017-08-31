@@ -44,6 +44,7 @@ figcaption,
 figure,
 footer,
 header,
+hgroup,
 main,
 menu,
 nav,
@@ -69,8 +70,6 @@ body {
 
 a {
   background-color: transparent; }
-  a:active, a:hover {
-    outline: 0; }
 
 button {
   overflow: visible;
